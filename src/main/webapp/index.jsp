@@ -1,6 +1,6 @@
 <%@ page import="com.example.webapphr3.Beans.Employee" %>
 <%
-    Employee emp = (Employee) session.getAttribute("employeeSession");
+    Employee emp = (Employee) session.getAttribute("employee");
     if (emp != null) {
         response.sendRedirect(request.getContextPath() + "/EmployeeServlet");
     }

@@ -29,7 +29,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="managerId">Manager</label>
-                            <select name="managerId" id="managerId" class="form-control">
+                            <select name="managerId" id="managerId" class="form-select form-select">
                                 <option value="0" <%= department.getManager() == null ? "Selected" : "" %>>
                                     -- Sin Jefe --
                                 </option>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="locationId">Location</label>
-                            <select name="locationId" id="locationId" class="form-control">
+                            <select name="locationId" id="locationId" class="form-select form-select">
                                 <option value="0" <%= department.getLocation() == null ? "Selected" : "" %>>
                                     -- Sin Ubicación --
                                 </option>

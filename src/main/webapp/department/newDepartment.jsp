@@ -29,7 +29,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="managerId">Manager</label>
-                            <select name="managerId" id="managerId" class="form-control">
+                            <select name="managerId" id="managerId" class="form-select form-select">
                                 <option value="0">-- Sin Jefe --</option>
                                 <% for (Employee e : listaEmpleados) {%>
                                 <option value="<%=e.getEmployeeId()%>"><%=e.getFirstName() + " " + e.getLastName()%>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="locationId">Location</label>
-                            <select name="locationId" id="locationId" class="form-control">
+                            <select name="locationId" id="locationId" class="form-select form-select">
                                 <option value="0">-- Sin Ubicación --</option>
                                 <% for (Location l : listaLocations) {%>
                                 <option value="<%=l.getLocationId()%>"><%=l.getCity()%>

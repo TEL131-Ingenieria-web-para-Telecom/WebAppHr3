@@ -41,7 +41,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="countryId">Country</label>
-                            <select name="countryId" id="countryId" class="form-control">
+                            <select name="countryId" id="countryId" class="form-select form-select">
                                 <% for (Country country : listaPaises) {%>
                                 <option value="<%=country.getCountryId()%>" <%=country.getCountryId().equals(location.getCountry().getCountryId()) ? "SELECTED" : ""%>>
                                     <%=country.getCountryName()%>

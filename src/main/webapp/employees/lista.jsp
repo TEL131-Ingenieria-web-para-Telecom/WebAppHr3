@@ -74,9 +74,9 @@
                         </td>
                         <td><%= e.getCommissionPct() == null ? "Sin comisión" : e.getCommissionPct()%>
                         </td>
-                        <td><%= e.getManager().getEmployeeId() == 0 ? "Sin jefe" : (e.getManager().getFirstName() + " " + e.getManager().getLastName())%>
+                        <td><%= e.getManager() == null ? "--" : (e.getManager().getFirstName() + " " + e.getManager().getLastName())%>
                         </td>
-                        <td><%= e.getDepartment().getDepartmentName()%>
+                        <td><%= e.getDepartment() == null ? "--" : e.getDepartment().getDepartmentName()%>
                         </td>
                         <td>
                             <a href="<%=request.getContextPath()%>/EmployeeServlet?action=editar&id=<%= e.getEmployeeId()%>"

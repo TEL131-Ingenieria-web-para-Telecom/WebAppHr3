@@ -46,8 +46,8 @@
                             <input type="text" class="form-control form-control-sm" id="hire_date" name="hire_date">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="job_id">Job ID</label>
-                            <select name="job_id" id="job_id" class="form-control">
+                            <label class="form-label" for="job_id">Job</label>
+                            <select name="job_id" id="job_id" class="form-select form-select-sm">
                                 <% for (Job job : listaTrabajos) {%>
                                 <option value="<%=job.getJobId()%>"><%=job.getJobTitle()%>
                                 </option>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="manager_id">Manager</label>
-                            <select name="manager_id" id="manager_id" class="form-control">
+                            <select name="manager_id" id="manager_id" class="form-select form-select-sm">
                                 <option value="sin-jefe">--Sin jefe--</option>
                                 <% for (Employee employee : listaJefes) {%>
                                 <option value="<%=employee.getEmployeeId()%>"><%=employee.getFirstName()%> <%=employee.getLastName()%>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="department_id">Department</label>
-                            <select name="department_id" id="department_id" class="form-control">
+                            <select name="department_id" id="department_id" class="form-select form-select-sm">
                                 <% for (Department department : listaDepartamentos) {%>
                                 <option value="<%=department.getDepartmentId()%>"><%=department.getDepartmentName()%>
                                 </option>

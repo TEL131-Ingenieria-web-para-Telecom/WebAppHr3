@@ -28,7 +28,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employeeSession");
+        Employee em = (Employee) session.getAttribute("employee");
 
         if (em == null) {
             response.sendRedirect(request.getContextPath());
@@ -127,7 +127,7 @@ public class EmployeeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employeeSession");
+        Employee em = (Employee) session.getAttribute("employee");
 
         if (em == null) {
             response.sendRedirect(request.getContextPath());

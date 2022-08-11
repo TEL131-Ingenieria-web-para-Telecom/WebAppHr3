@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
 
         switch (action) {
             case "loginform":
-                Employee employeeSession = (Employee) session.getAttribute("employeeSession");
-                if (employeeSession != null && employeeSession.getEmployeeId() > 0) {
+                Employee employee = (Employee) session.getAttribute("employee");
+                if (employee != null && employee.getEmployeeId() > 0) {
                     response.sendRedirect(request.getContextPath() + "/EmployeeServlet");
                 } else {
                     RequestDispatcher view = request.getRequestDispatcher("login/loginForm.jsp");
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 
             if (employee != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("employeeSession", employee);
+                session.setAttribute("employee", employee);
 
                 session.setMaxInactiveInterval(10 * 60); // 10 minutos
 

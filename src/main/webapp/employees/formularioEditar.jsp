@@ -54,7 +54,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="job_id">Job ID</label>
-                            <select name="job_id" id="job_id" class="form-control">
+                            <select name="job_id" id="job_id" class="form-select form-select-sm">
                                 <% for (Job job : listaTrabajos) {%>
                                 <option value="<%=job.getJobId()%>" <%= empleado.getJob().getJobId().equals(job.getJobId()) ? "selected" : "" %>>
                                     <%=job.getJobTitle()%>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="manager_id">Manager</label>
-                            <select name="manager_id" id="manager_id" class="form-control">
+                            <select name="manager_id" id="manager_id" class="form-select form-select-sm">
                                 <option value="sin-jefe">--Sin jefe--</option>
                                 <% for (Employee employee : listaJefes) {%>
                                 <option value="<%=employee.getEmployeeId()%>" <%= empleado.getManager().getEmployeeId() == employee.getEmployeeId() ? "selected" : "" %>>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="department_id">Department</label>
-                            <select name="department_id" id="department_id" class="form-control">
+                            <select name="department_id" id="department_id" class="form-select form-select-sm">
                                 <% for (Department department : listaDepartamentos) {%>
                                 <option value="<%=department.getDepartmentId()%>" <%= empleado.getDepartment().getDepartmentId() == department.getDepartmentId() ? "selected" : "" %>>
                                     <%=department.getDepartmentName()%>
