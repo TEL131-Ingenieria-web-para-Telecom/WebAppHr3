@@ -29,12 +29,6 @@ public class DepartmentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employee");
-
-        if (em == null) {
-            response.sendRedirect(request.getContextPath());
-        } else {
             String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
 
             DepartmentDao departmentDao = new DepartmentDao();
@@ -96,7 +90,7 @@ public class DepartmentServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/DepartmentServlet");
                     break;
             }
-        }
+
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

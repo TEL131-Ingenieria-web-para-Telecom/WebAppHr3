@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -22,67 +23,61 @@ public class CountryServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employee");
-        if (em == null) {
-            response.sendRedirect(request.getContextPath());
-        } else {
-            String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
 
-            CountryDao countryDao = new CountryDao();
-            RequestDispatcher view;
-            Country country;
-            String countryId;
+        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
 
-            switch (action) {
-                case "formCrear":
-                    view = request.getRequestDispatcher("country/newCountry.jsp");
-                    view.forward(request, response);
-                    break;
-                case "crear":
-                    countryId = request.getParameter("id");
-                    String countryName = request.getParameter("countryName");
-                    System.out.println(countryName);
-                    BigDecimal regionId = new BigDecimal(request.getParameter("regionId"));
+        CountryDao countryDao = new CountryDao();
+        RequestDispatcher view;
+        Country country;
+        String countryId;
 
-                    country = countryDao.obtener(countryId);
+        switch (action) {
+            case "formCrear":
+                view = request.getRequestDispatcher("country/newCountry.jsp");
+                view.forward(request, response);
+                break;
+            case "crear":
+                countryId = request.getParameter("id");
+                String countryName = request.getParameter("countryName");
+                System.out.println(countryName);
+                BigDecimal regionId = new BigDecimal(request.getParameter("regionId"));
 
-                    if (country == null) {
-                        countryDao.crear(countryId, countryName, regionId);
-                    } else {
-                        countryDao.actualizar(countryId, countryName, regionId);
-                    }
+                country = countryDao.obtener(countryId);
+
+                if (country == null) {
+                    countryDao.crear(countryId, countryName, regionId);
+                } else {
+                    countryDao.actualizar(countryId, countryName, regionId);
+                }
+                response.sendRedirect(request.getContextPath() + "/CountryServlet");
+                break;
+            case "lista":
+                ArrayList<Country> lista = countryDao.listar();
+
+                request.setAttribute("lista", lista);
+
+                view = request.getRequestDispatcher("country/listaCountry.jsp");
+                view.forward(request, response);
+                break;
+
+            case "editar":
+                countryId = request.getParameter("id");
+                country = countryDao.obtener(countryId);
+                if (country == null) {
                     response.sendRedirect(request.getContextPath() + "/CountryServlet");
-                    break;
-                case "lista":
-                    ArrayList<Country> lista = countryDao.listar();
-
-                    request.setAttribute("lista", lista);
-
-                    view = request.getRequestDispatcher("country/listaCountry.jsp");
+                } else {
+                    request.setAttribute("country", country);
+                    view = request.getRequestDispatcher("country/updateCountry.jsp");
                     view.forward(request, response);
-                    break;
-
-                case "editar":
-                    countryId = request.getParameter("id");
-                    country = countryDao.obtener(countryId);
-                    if (country == null) {
-                        response.sendRedirect(request.getContextPath() + "/CountryServlet");
-                    } else {
-                        request.setAttribute("country", country);
-                        view = request.getRequestDispatcher("country/updateCountry.jsp");
-                        view.forward(request, response);
-                    }
-                    break;
-                case "borrar":
-                    countryId = request.getParameter("id");
-                    if (countryDao.obtener(countryId) != null) {
-                        countryDao.borrar(countryId);
-                    }
-                    response.sendRedirect(request.getContextPath() + "/CountryServlet");
-                    break;
-            }
+                }
+                break;
+            case "borrar":
+                countryId = request.getParameter("id");
+                if (countryDao.obtener(countryId) != null) {
+                    countryDao.borrar(countryId);
+                }
+                response.sendRedirect(request.getContextPath() + "/CountryServlet");
+                break;
         }
     }
 

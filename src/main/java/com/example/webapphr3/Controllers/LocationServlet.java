@@ -23,12 +23,7 @@ public class LocationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employee");
 
-        if (em == null) {
-            response.sendRedirect(request.getContextPath());
-        } else {
             String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
 
             LocationDao locationDao = new LocationDao();
@@ -89,7 +84,6 @@ public class LocationServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/LocationServlet");
                     break;
             }
-        }
     }
 
     @Override

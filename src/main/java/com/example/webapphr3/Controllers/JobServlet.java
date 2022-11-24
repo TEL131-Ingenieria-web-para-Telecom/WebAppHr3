@@ -25,12 +25,6 @@ public class JobServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
-        Employee em = (Employee) session.getAttribute("employee");
-
-        if (em == null) {
-            response.sendRedirect(request.getContextPath());
-        } else {
             String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
 
             JobDao jobDao = new JobDao();
@@ -69,6 +63,7 @@ public class JobServlet extends HttpServlet {
                     int maxSalary = Integer.parseInt(request.getParameter("maxSalary"));
 
                     job = jobDao.obtenerTrabajo(jobId);
+                    HttpSession session = request.getSession();
 
                     if (job == null) {
                         try {
@@ -108,7 +103,6 @@ public class JobServlet extends HttpServlet {
                     }
                     break;
             }
-        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
